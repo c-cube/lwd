@@ -445,7 +445,11 @@ let set_on_invalidate x f =
   | Root t -> t.on_invalidate <- f
 
 module Infix = struct
-  let (let$) = bind
-  let (and$) = pair
+  include LwdShimsMkLet_.Make(struct
+      type nonrec 'a t = 'a t
+      let (>|=) = map'
+      let monoid_product=pair
+      let (>>=) = bind
+      end)
   let ($=) = set
 end

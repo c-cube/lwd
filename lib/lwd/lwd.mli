@@ -34,7 +34,6 @@ val is_released : 'a root -> bool
 val release : 'a root -> unit
 
 module Infix : sig
-  val (let$) : 'a t -> ('a -> 'b t) -> 'b t
-  val (and$) : 'a t -> 'b t -> ('a * 'b) t
+  include LwdShimsMkLet_.S with type 'a t_let = 'a t
   val ($=) : 'a var -> 'a -> unit
 end

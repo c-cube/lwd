@@ -1,5 +1,17 @@
-(library 
-  (name lwd) 
+(library
+  (name lwd)
   (public_name lwd)
-  (modules lwd lwd_table lwd_utils) 
+  (modules lwd lwd_table lwd_utils LwdShimsMkLet_)
+  (libraries seq)
   (wrapped false))
+
+(executable
+ (name mkshims)
+ (modules mkshims)
+ (libraries dune.configurator))
+
+(rule
+ (targets LwdShimsMkLet_.ml)
+ (deps ./mkshims.exe)
+ (action
+  (run ./mkshims.exe)))

@@ -7,7 +7,12 @@ authors: ["Frédéric Bour"]
 license: "MIT"
 homepage: "https://github.com/let-def/lwd"
 bug-reports: "https://github.com/let-def/lwd/issues"
-depends: ["dune"]
+depends: [
+  "dune"
+  "seq"
+  "dune.configurator"
+  "ocaml" {>= "4.06"}
+]
 build: [
   ["dune" "subst"] {pinned}
   [
